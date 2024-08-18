@@ -36,7 +36,7 @@ Connect the DIN (Data In) pin of the WS2812 strip to the MOSI (Master Out Slave 
 ## Usage
 
 ```python
-from rpi5_ws2812.ws2812 import WS2812SpiDriver
+from rpi5_ws2812.ws2812 import Color, WS2812SpiDriver
 import time
 
 if __name__ == "__main__":

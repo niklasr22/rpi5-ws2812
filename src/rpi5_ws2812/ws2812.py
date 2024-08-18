@@ -32,7 +32,7 @@ class Strip:
         """
         buffer = np.array(
             [
-                np.array(pixel.g * self._brightness, pixel.r * self._brightness, pixel.b * self._brightness)
+                np.array([pixel.g * self._brightness, pixel.r * self._brightness, pixel.b * self._brightness])
                 for pixel in self._pixels
             ],
             dtype=np.uint8,
