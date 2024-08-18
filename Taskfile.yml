@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - rm -rf ./dist/*
+      - python -m build
+  publish:
+    cmds:
+      - python -m twine upload dist/*
