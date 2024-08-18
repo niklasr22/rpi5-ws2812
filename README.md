@@ -29,6 +29,10 @@ sudo adduser YOUR_USER spidev
 pip install rpi5-ws2812
 ```
 
+## Wiring
+
+Connect the DIN (Data In) pin of the WS2812 strip to the MOSI (Master Out Slave In) pin of the Raspberry Pi 5. The MOSI pin is pin 19 / GPIO10 on the Raspberry Pi 5.
+
 ## Usage
 
 ```python
@@ -38,7 +42,7 @@ import time
 if __name__ == "__main__":
 
     # Initialize the WS2812 strip with 100 leds and SPI channel 0, CE0
-    strip = WS2812SpiDriver(0, 0, 100).get_strip()
+    strip = WS2812SpiDriver(spi_bus=0, spi_device=0, led_count=100).get_strip()
     while True:
         strip.set_all_pixels(Color(255, 0, 0))
         strip.show()
