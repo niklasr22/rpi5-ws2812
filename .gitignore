@@ -1,0 +1,11 @@
+# general
+.venv
+.vscode
+
+# macos files
+.DS_Store
+
+# builds and cache
+*.egg-info
+**/__pycache__
+dist
