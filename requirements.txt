@@ -1,4 +1,4 @@
-build
-numpy
-spidev
-twine
+build>=1.6.1
+numpy>=1.26.4
+spidev>=3.8; sys_platform == "linux"
+twine>=7.0.0

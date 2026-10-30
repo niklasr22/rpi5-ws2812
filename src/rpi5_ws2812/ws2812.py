@@ -36,7 +36,7 @@ class Strip:
                 for pixel in self._pixels
             ],
             dtype=np.uint8,
-        )
+        ).reshape(self._led_count, 3)
         self._backend.write(buffer)
 
     def clear(self) -> None:
@@ -105,6 +105,9 @@ class WS2812SpiDriver(WS2812StripDriver):
     PREAMBLE: int = 42
 
     def __init__(self, spi_bus: int, spi_device: int, led_count: int):
+        if led_count < 0:
+            raise ValueError("led_count must be non-negative")
+
         self._device = SpiDev()
         self._device.open(spi_bus, spi_device)
 
@@ -124,8 +127,10 @@ class WS2812SpiDriver(WS2812StripDriver):
     def write(self, buffer: np.ndarray) -> None:
         """
         Write colors to the LED strip
-        :param colors: A 2D numpy array of shape (num_leds, 3) where the last dimension is the GRB values
+        :param buffer: A 2D numpy array of shape (num_leds, 3) where the last dimension is the GRB values
         """
+        if buffer.shape != (self._led_count, 3):
+            raise ValueError(f"Expected colors with shape ({self._led_count}, 3), got {buffer.shape}")
         flattened_colors = buffer.ravel()
         color_bits = np.unpackbits(flattened_colors)
         self._buffer[WS2812SpiDriver.PREAMBLE :] = np.where(

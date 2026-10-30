@@ -20,7 +20,7 @@ Navigate to `Interfacing Options` -> `SPI` and enable it.
 Optional: add your user to the `spi` group to avoid running the script as root:
 
 ```bash
-sudo adduser YOUR_USER spidev
+sudo adduser YOUR_USER spi
 ```
 
 ## Installation
